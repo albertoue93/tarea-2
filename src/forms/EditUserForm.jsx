@@ -12,20 +12,30 @@ const EditUserForm = (props) => {
         const {name, value} = e.target;
         setUser({...user, [name]: value});
         }
-
+    /**Edita el usuario enviandolo al metodo principal*/
     const handleSubmit = e => {
         e.preventDefault();
-        if (user.name && user.username) props.updateUser(user);
-    }
-
+        if (user.ced && user.name && user.lastname && user.email){
+			props.updateUser(user);
+		}
+	}
+	
     return (
-        <form>
-            <label>Name</label>
+        <form className="myForm">
+            <label>Cédula</label>
+            <input className="u-full-width" type="text" value={user.ced} name="ced" onChange={handleChange} />
+			
+			<label>Nombre</label>
             <input className="u-full-width" type="text" value={user.name} name="name" onChange={handleChange} />
-            <label>Username</label>
-            <input className="u-full-width" type="text" value={user.username} name="username" onChange={handleChange} />
-            <button className="button-primary" type="submit" onClick={handleSubmit} >Edit user</button>
-            <button type="submit" onClick={() => props.setEditing(false)} >Cancel</button>
+			
+            <label>Apellidos</label>
+            <input className="u-full-width" type="text" value={user.lastname} name="lastname" onChange={handleChange} />
+			
+			<label>Email</label>
+            <input className="u-full-width" type="text" value={user.email} name="email" onChange={handleChange} />
+			
+            <button className="myButtonE" type="submit" onClick={handleSubmit} >Editar Usuario</button>
+            <button type="submit" onClick={() => props.setEditing(false)} >Cancelar</button>
         </form>
     )
 }

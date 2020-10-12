@@ -2,34 +2,36 @@ import React from 'react';
 
 const UserTable = (props) => {
     return (
-        <table>
+        <table className="minimalistBlack">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Name</th>
-                    <th>Username</th>
-                    <th>Actions</th>
+					<th>Cédula</th>
+                    <th>Nombre</th>
+					<th>Apellidos</th>
+                    <th>Email</th>
+                    <th>Acciones</th>
                 </tr>
             </thead>
             <tbody>
                 { props.users.length > 0 ? (
                     props.users.map(user => {
-                        const {id, name, username} = user;
+                        const {id, ced, name, lastname, email} = user;
                         return (
                             <tr key={id}>
-                                <td>{id}</td>
+								<td>{ced}</td>
                                 <td>{name}</td>
-                                <td>{username}</td>
+                                <td>{lastname}</td>
+                                <td>{email}</td>
                                 <td>
-                                    <button onClick={() => props.deleteUser(id)}>Delete</button>
-                                    <button onClick={() => props.editUser(id, user)}>Edit</button>
+								    <button className="myButtonEd" onClick={() => props.editUser(id, user)}>Editar</button>
+                                    <button className="myButtonEl" onClick={() => props.deleteUser(id)}>Eliminar</button>
                                 </td>
                             </tr>
                         )
                     })
                 ) : (
                     <tr>
-                        <td colSpan={4}>No users found</td>
+                        <td colSpan={5}>No hay usuarios Registrados</td>
                     </tr>
                 )   
                 }
